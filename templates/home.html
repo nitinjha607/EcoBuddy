@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBuddy - Your Personal Sustainability Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to EcoBuddy</h1>
+        <p>Your personal guide to tracking and reducing your carbon footprint.</p>
+    </header>
+
+    <section class="intro">
+        <h2>About EcoBuddy</h2>
+        <p>EcoBuddy helps you track your daily activities and provides personalized insights to help you reduce your carbon footprint. From diet and transportation to household habits, EcoBuddy calculates your impact on the environment and offers actionable tips for living a more eco-friendly lifestyle.</p>
+    </section>
+
+    <section class="features">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Accurate carbon emission calculation based on personal data.</li>
+            <li>Personalized tips to reduce your carbon footprint.</li>
+            <li>Track and monitor your sustainability journey.</li>
+            <li>Get insights based on your daily activities and habits.</li>
+        </ul>
+    </section>
+
+    <section class="start">
+        <h2>Ready to Get Started?</h2>
+        <p>Head over to our carbon footprint calculator and find out how your daily activities affect the environment.</p>
+        <a href="{{ url_for('predict') }}" class="btn">Calculate Your Carbon Footprint</a>
+    </section>
+
+    <footer>
+        <p>EcoBuddy © 2024 | <a href="/about">Learn More</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+.carbon-animation-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.carbon-molecule {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  opacity: 0.7;
+  animation: float-up 4s infinite linear;
+}
+
+.carbon-molecule::before,
+.carbon-molecule::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #333;
+}
+
+.carbon-molecule::before {
+  left: 0;
+}
+
+.carbon-molecule::after {
+  right: 0;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(200px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50px) rotate(360deg);
+  }
+}
+
+.carbon-molecule:nth-child(1) { left: 10%; animation-delay: 0s; }
+.carbon-molecule:nth-child(2) { left: 30%; animation-delay: 1s; }
+.carbon-molecule:nth-child(3) { left: 50%; animation-delay: 2s; }
+.carbon-molecule:nth-child(4) { left: 70%; animation-delay: 3s; }
+.carbon-molecule:nth-child(5) { left: 90%; animation-delay: 4s; }

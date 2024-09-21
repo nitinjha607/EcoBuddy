@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emission Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Result box styling with animation */
+        .result-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 1.5s infinite;
+            font-size: 1.5em;
+            text-align: center;
+            position: relative;
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        /* Pulse animation for result box */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Carbon animation bubbles */
+        .carbon-particle {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            position: absolute;
+            animation: move 5s infinite;
+            opacity: 0.7;
+        }
+
+        .carbon-particle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .carbon-particle:nth-child(2) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .carbon-particle:nth-child(3) {
+            top: 80%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .carbon-particle:nth-child(4) {
+            top: 50%;
+            left: 50%;
+            animation-delay: 1.5s;
+        }
+
+        .carbon-particle:nth-child(5) {
+            top: 70%;
+            left: 80%;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Recommendation box styling */
+        .recommendation-box {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+        }
+    </style>
+
+    <script>
+        function provideFeedback(prediction) {
+            const emojiContainer = document.getElementById('emoji-container');
+            const message = document.getElementById('message');
+            const resultBox = document.querySelector('.result-box');
+            const carbonParticles = document.querySelectorAll('.carbon-particle');
+            const tipsContainer = document.getElementById('recommendation-tips');
+
+            let feedbackText = '';
+            let emoji = '';
+            let tips = '';
+            let color = '';
+
+            // Set feedback, emoji, tips, and colors based on prediction value
+            if (prediction < 1000) {
+                feedbackText = "You're doing great with a low carbon footprint! Keep it up!";
+                emoji = "😊";
+                tips = "Keep up the good work by using public transport, reducing waste, and conserving energy.";
+                color = "green";
+            } else if (prediction >= 1000 && prediction < 3000) {
+                feedbackText = "You're doing okay, but there's room for improvement!";
+                emoji = "😐";
+                tips = "Consider switching to renewable energy sources, carpooling, and cutting down on air travel.";
+                color = "yellow";
+            } else {
+                feedbackText = "Your carbon footprint is high. Consider adopting more sustainable habits!";
+                emoji = "😟";
+                tips = "You should focus on recycling, reducing vehicle emissions, and cutting down on meat consumption.";
+                color = "red";
+            }
+
+            message.textContent = feedbackText;
+            emojiContainer.textContent = emoji;
+            tipsContainer.textContent = tips;
+
+            // Apply color to the result box and carbon animation particles
+            resultBox.style.backgroundColor = color === 'green' ? '#e0f7e0' : color === 'yellow' ? '#fff3cd' : '#f8d7da';
+            carbonParticles.forEach(particle => particle.style.backgroundColor = color);
+
+            // Voice feedback
+            const speech = new SpeechSynthesisUtterance(feedbackText);
+            speech.pitch = 1;
+            speech.rate = 1;
+            window.speechSynthesis.speak(speech);
+        }
+
+        // Trigger the feedback function when the page loads
+        window.onload = function() {
+            const predictionValue = parseFloat({{ prediction }});  // Your prediction value
+            provideFeedback(predictionValue);
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Your Carbon Emission Prediction</h1>
+    </header>
+
+    <!-- Animated result box with emoji, prediction, feedback, and bubbles inside -->
+    <div class="result-box">
+        <h2>Predicted Carbon Emission: {{ prediction }} kg CO2 per year</h2>
+        <div id="emoji-container" style="font-size: 100px;"></div>
+        <p id="message"></p>
+
+        <!-- Carbon bubbles inside the result box -->
+        <div class="carbon-particle"></div>
+        <div class="carbon-particle"></div>
+        <div class="carbon-particle"></div>
+        <div class="carbon-particle"></div>
+        <div class="carbon-particle"></div>
+    </div>
+
+    <!-- Recommendations based on carbon emission -->
+    <section class="recommendation-box">
+        <h3>Recommendation Tips:</h3>
+        <p id="recommendation-tips"></p>
+    </section>
+
+    <footer>
+        <p>EcoBuddy © 2024</p>
+    </footer>
+</body>
+</html>

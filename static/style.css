@@ -1,0 +1,239 @@
+:root {
+  --color-primary: #2e7d32;
+  --color-secondary: #81c784;
+  --color-accent: #4caf50;
+  --color-background: rgba(241, 248, 233, 0.9);
+  --color-text: #333;
+  --color-text-light: #fff;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  background-image: url('https://ik.imagekit.io/demo/img/image10.jpeg?tr=w-1200,h-800');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: -1;
+}
+
+header {
+  background-color: rgba(46, 125, 50, 0.9);
+  color: var(--color-text-light);
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+h1 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+section {
+  flex: 1;
+  padding: 30px;
+  margin: 0 auto 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px var(--color-shadow);
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: rgba(46, 125, 50, 0.9);
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  box-shadow: 0 -2px 4px var(--color-shadow);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+form label {
+  margin-top: 15px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+form input, form textarea {
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 5px;
+  background-color: rgba(249, 253, 247, 0.9);
+  transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+form button {
+  padding: 12px;
+  margin-top: 20px;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+form button:hover {
+  background-color: var(--color-primary);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.eco-icon::before {
+  content: '🍃';
+  margin-right: 5px;
+}
+
+.recycling-icon::before {
+  content: '♻️';
+  margin-right: 5px;
+}
+
+.section-title {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Carbon Emission Animation */
+.carbon-animation {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.carbon-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  animation: float 4s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(200px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Generate 20 particles with different sizes, positions, and animation delays */
+.carbon-particle:nth-child(1) { left: 5%; animation-delay: 0s; }
+.carbon-particle:nth-child(2) { left: 15%; animation-delay: 0.5s; width: 15px; height: 15px; }
+.carbon-particle:nth-child(3) { left: 25%; animation-delay: 1s; }
+.carbon-particle:nth-child(4) { left: 35%; animation-delay: 1.5s; width: 8px; height: 8px; }
+.carbon-particle:nth-child(5) { left: 45%; animation-delay: 2s; }
+.carbon-particle:nth-child(6) { left: 55%; animation-delay: 2.5s; width: 12px; height: 12px; }
+.carbon-particle:nth-child(7) { left: 65%; animation-delay: 3s; }
+.carbon-particle:nth-child(8) { left: 75%; animation-delay: 3.5s; width: 7px; height: 7px; }
+.carbon-particle:nth-child(9) { left: 85%; animation-delay: 4s; }
+.carbon-particle:nth-child(10) { left: 95%; animation-delay: 4.5s; width: 14px; height: 14px; }
+.carbon-particle:nth-child(11) { left: 10%; animation-delay: 5s; }
+.carbon-particle:nth-child(12) { left: 20%; animation-delay: 5.5s; width: 11px; height: 11px; }
+.carbon-particle:nth-child(13) { left: 30%; animation-delay: 6s; }
+.carbon-particle:nth-child(14) { left: 40%; animation-delay: 6.5s; width: 9px; height: 9px; }
+.carbon-particle:nth-child(15) { left: 50%; animation-delay: 7s; }
+.carbon-particle:nth-child(16) { left: 60%; animation-delay: 7.5s; width: 13px; height: 13px; }
+.carbon-particle:nth-child(17) { left: 70%; animation-delay: 8s; }
+.carbon-particle:nth-child(18) { left: 80%; animation-delay: 8.5s; width: 6px; height: 6px; }
+.carbon-particle:nth-child(19) { left: 90%; animation-delay: 9s; }
+.carbon-particle:nth-child(20) { left: 100%; animation-delay: 9.5s; width: 16px; height: 16px; }
+
+@media (max-width: 768px) {
+  main {
+    padding: 10px;
+  }
+
+  section {
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .carbon-animation {
+    height: 150px;
+  }
+}
